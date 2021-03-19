@@ -11,7 +11,7 @@ public class App {
         System.out.println("Maximum integer value = " + maxIntValue);
         System.out.println("Minimum integer value with 1000 subtracted from it: " + (minIntValue - 1000));
         System.out.println("Maximum integer value with 1000 added to it: " + (maxIntValue + 1000));
-        
+
         System.out.println("\n<====================BYTE DATATYPE===================>\n");
         byte minByteValue = Byte.MIN_VALUE;
         byte maxByteValue = Byte.MAX_VALUE;
@@ -25,11 +25,21 @@ public class App {
         System.out.println("Maximum short value = " + maxShortValue);
 
         System.out.println("\n<====================LONG DATATYPE===================>\n");
-        long myValue = 10000l; // the 'l' is suffixed to specify that it is a long value
+        long myLongValue = 10000l; // the 'l' is suffixed to specify that it is a long value
         long minLongValue = Long.MIN_VALUE;
         long maxLongValue = Long.MAX_VALUE;
-        System.out.println(myValue);
+        System.out.println(myLongValue);
         System.out.println("Minimum long value = " + minLongValue);
         System.out.println("Maximum long value = " + maxLongValue);
+
+        int myValue = (minIntValue / 2);
+        byte myByteValue = (byte) (minByteValue / 2);
+        short myShortValue = (short) (minShortValue / 2);
+
+        // LONG VALUES WORK WITH Int DATATYPE VALUES WITHOUT ANY CASTING
+        long longTotal = maxLongValue - 100000l * (myValue + myByteValue + myShortValue);
+        System.out.println(longTotal);
+
+        short shortTotal = (short) (1000 + 10 * (myByteValue + myValue + myShortValue));
     }
 }
