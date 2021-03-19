@@ -10,5 +10,11 @@ public class App {
         // printing literal 'char' type values
         System.out.println('\u0404');
         System.out.println('\u00a9'); // same as '\u00A9'
+
+        boolean myTrueVal = true;
+        boolean myFalseVal = false;
+
+        boolean isPersonAdult = true;
+        
     }
 }
