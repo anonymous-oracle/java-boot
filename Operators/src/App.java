@@ -64,7 +64,8 @@ public class App {
             System.out.println("is Alien");
         }
         int ageOfPerson = 2;
-        boolean isAdult = ageOfPerson >= 18 ? true : false;
+        boolean isAdult = (ageOfPerson >= 18) ? true : false;
+        // boolean isAdult = ageOfPerson >= 18 ? true : false;
         if (isAdult) {
             System.out.println("Is Adult");
         } else
