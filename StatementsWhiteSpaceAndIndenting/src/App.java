@@ -7,5 +7,11 @@ public class App {
         myVariable--; // this too
 
         // A STATEMENT ALWAYS ENDS WITH A SEMICOLON
+        System.out.println("This is" + " another" + " statement"); // all three lines are a single statement
+
+        // // WE CAN PUT STATEMENTS ON SAME LINE
+        // int anotherVariable =
+        // 50;--anotherVariable;System.out.println(anotherVariable);
+
     }
 }
