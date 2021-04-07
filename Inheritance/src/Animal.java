@@ -13,7 +13,26 @@ public class Animal {
         this.body = body;
         this.size = size;
         this.weight = weight;
-        
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public int getBrain() {
+        return this.brain;
+    }
+
+    public int getBody() {
+        return this.body;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public int getWeight() {
+        return this.weight;
     }
 
 }
