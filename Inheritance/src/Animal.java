@@ -35,4 +35,15 @@ public class Animal {
         return this.weight;
     }
 
+    public void eat() {
+        System.out.println(this.name + " is eating");
+    }
+
+    public void move() {
+        System.out.println(this.name + " is moving");
+    }
+
+    public void move(int speed) {
+        System.out.println(this.getName() + " is moving at " + speed);
+    }
 }
