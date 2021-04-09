@@ -8,7 +8,7 @@ public class App {
         dog.run();
         dog.walk();
         dog.move(12);
-
+ 
         Fish fish = new Fish("gold fish", 1, 3, 2, 2, 5);
         fish.swim(5);
         fish.rest();
