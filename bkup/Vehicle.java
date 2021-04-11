@@ -1,3 +1,4 @@
+package InheritanceChallenge.src;
 
 public class Vehicle {
     private String name;
