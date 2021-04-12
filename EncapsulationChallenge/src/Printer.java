@@ -21,20 +21,24 @@ public class Printer {
         this.tonerLevel -= tonerUsage;
     }
 
+    private boolean tonerChecker(int limit) {
+        if (this.tonerLevel <= limit) {
+            return this.refillAlert();
+        }
+        return true;
+    }
+
     public boolean printPage() {
+        boolean response;
         if (this.isDuplex) {
-            if (this.tonerLevel <= 1) {
-                return this.refillAlert();
-            }
+            response = this.tonerChecker(1);
             this.adjustPageAndTonerParams(2, 2);
         } else {
-            if (this.tonerLevel <= 0) {
-                return this.refillAlert();
-            }
+            response = this.tonerChecker(0);
             this.adjustPageAndTonerParams(1, 1);
         }
         System.out.println("Printing page...");
-        return true;
+        return response;
 
     }
 
