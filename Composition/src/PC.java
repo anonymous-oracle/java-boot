@@ -13,15 +13,20 @@ public class PC {
         this.motherboard = motherboard;
     }
 
-    public Case getCase() {
+    public void powerUp(){
+        this.getCase().pressPowerButton();
+        this.getMonitor().drawPixelAt(1200, 500, "blue");
+        this.getMotherboard().loadProgram("Ubuntu 20.04.1 - Focal Fossa");
+    }
+    private Case getCase() {
         return this.theCase;
     }
 
-    public Monitor getMonitor() {
+    private Monitor getMonitor() {
         return this.monitor;
     }
 
-    public Motherboard getMotherboard(){
+    private Motherboard getMotherboard(){
         return this.motherboard;
     }
 }

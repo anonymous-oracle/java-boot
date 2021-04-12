@@ -10,10 +10,12 @@ public class App {
         Motherboard theMotherboard = new Motherboard("BJ-200", "Asus", 4, 6, "v2.44");
         PC thePC = new PC(theCase, theMonitor, theMotherboard);
 
-        // now suppose we want to call a method from the theMonitor instance
-        thePC.getCase().pressPowerButton();
-        thePC.getMotherboard().loadProgram("Ubuntu 20.04.1");
-        thePC.getMonitor().drawPixelAt(1500, 1200, "blue");
+        // // now suppose we want to call a method from the theMonitor instance
+        // thePC.getCase().pressPowerButton();
+        // thePC.getMotherboard().loadProgram("Ubuntu 20.04.1");
+        // thePC.getMonitor().drawPixelAt(1500, 1200, "blue");
 
+        // // OR BY MAKING CHANGES IN THE PC CLASS AS DONE NOW
+        thePC.powerUp();
     }
 }
