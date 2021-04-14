@@ -1,3 +1,4 @@
+// package Arrays2.src;
 import java.util.Scanner;
 
 public class App {
@@ -15,7 +16,7 @@ public class App {
         for (int i = 0; i < number; i++) {
             values[i] = scanner.nextInt();
         }
-
+scanner.close();
         return values;
     }
 
