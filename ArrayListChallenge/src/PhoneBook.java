@@ -16,8 +16,10 @@ public class PhoneBook {
     }
 
     private int searchContactByName(String name) {
+        String namePlaceholder;
         for (int i = 0; i < this.contactList.size(); i++) {
-            if (this.contactList.get(i).getName() == name) {
+            namePlaceholder = this.contactList.get(i).getName();
+            if (namePlaceholder == name) {
                 return i;
             }
         }
@@ -25,12 +27,30 @@ public class PhoneBook {
     }
 
     private int searchContactByNumber(String number) {
+        String numberPlaceholder;
         for (int i = 0; i < this.contactList.size(); i++) {
-            if (this.contactList.get(i).getName() == number) {
+            numberPlaceholder = this.contactList.get(i).getNumber();
+            if (numberPlaceholder == number) {
                 return i;
             }
         }
         return -1;
+    }
+
+    public boolean findByName(String name) {
+        if (this.searchContactByName(name) == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean findByNumber(String number) {
+        if (this.searchContactByNumber(number) == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public void editNameByName(String name, String newName) {
