@@ -18,7 +18,7 @@ public class Customer{
         return this.name;
     }
 
-    public ArrayList<Double> getTransaction(){
+    public ArrayList<Double> getTransactions(){
         return transactions;
     }
 

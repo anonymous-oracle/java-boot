@@ -29,7 +29,7 @@ public class Branch {
         Customer checkedCustomer;
         for (int i = 0; i < this.customers.size(); i++) {
             checkedCustomer = this.customers.get(i);
-            if (this.customers.get(i).equals(customerName)) { // the reason equals is used here is because the String
+            if (checkedCustomer.getName().equals(customerName)) { // the reason equals is used here is because the String
                                                               // class is not a primitive datatype
                 return checkedCustomer;
             }

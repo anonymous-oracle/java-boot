@@ -13,66 +13,68 @@ public class Bank {
         return this.name;
     }
 
-    public ArrayList<Branch> getCustomerList() {
+    private Branch findBranch(String branchName) {
+        Branch checkedBranch;
+        for (int i = 0; i < this.branches.size(); i++) {
+            checkedBranch = this.branches.get(i);
+            if (checkedBranch.getBranchName().equals(branchName)) { // the reason equals is used here is because the String
+                                                           // class is not a primitive datatype
+                return checkedBranch;
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Branch> getBranchList() {
         return this.branches;
     }
 
-    public void addBranch(String branchName) {
-        Branch newBranch = new Branch(name);
-        this.branches.add(newBranch);
-    }
-
-    public int searchBranch(String branchName) {
-        for (int i = 0; i < this.branches.size(); i++) {
-            if (this.branches.get(i).getBranchName() == branchName) {
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public boolean branchExists(String name) {
-        if (this.searchBranch(name) == -1) {
-            return false;
-        } else {
+    public boolean addBranch(String branchName) {
+        if (this.findBranch(branchName) == null) {
+            this.branches.add(new Branch(branchName));
             return true;
         }
+
+        return false;
     }
 
-    public Branch getBranch(String branchName) {
-        int branchInd = this.searchBranch(branchName);
-        if (branchInd == -1) {
-            return null;
+    public boolean addCustomer(String branchName, String customerName, double initialAmount) {
+        Branch branch = this.findBranch(branchName);
+        if (branch != null) {
+            return branch.newCustomer(customerName, initialAmount);
         }
-        return this.branches.get(branchInd);
+        return false;
     }
 
-    public Customer addCustomerToBranch(String branchName, String customerName) {
-        Branch branch = this.getBranch(branchName);
-        return branch.addCustomer(customerName);
+    public boolean addCustomerTransaction(String branchName, String customerName, double amount) {
+        Branch branch = this.findBranch(branchName);
+        if (branch != null) {
+            return branch.addCustomerTransaction(customerName, amount);
+        }
+        return false;
     }
 
-    public void addCustomerToBranch(String branchName, String customerName, double amount) {
-        Customer newCustomer = this.addCustomerToBranch(branchName, customerName);
-        newCustomer.addTransaction(amount);
-    }
-
-    public void listBranches(boolean listCustomers) {
-        Branch branch;
-        System.out.println("======================================");
-        for (int i = 0; i < this.branches.size(); i++) {
-            branch = this.branches.get(i);
-            System.out.println(branch.getBranchName().toUpperCase());
-            if (listCustomers) {
-                System.out.println("Listing customers:");
-                branch.listCustomers();
+    public boolean listCustomers(String branchName, boolean showTransactions) {
+        Branch branch = this.findBranch(branchName);
+        if (branch != null) {
+            System.out.println("Customer details for branch " + branch.getBranchName());
+            ArrayList<Customer> branchCustomers = branch.getCustomerList();
+            Customer branchCustomer;
+            for (int i = 0; i < branchCustomers.size(); i++) {
+                branchCustomer = branchCustomers.get(i);
+                System.out.println("Customer: " + branchCustomer.getName() + "[" + i + "]");
+                if (showTransactions) {
+                    System.out.println("Transactions");
+                    ArrayList<Double> transactions = branchCustomer.getTransactions();
+                    for (int j = 0; j < transactions.size(); j++) {
+                        System.out.println("Amount " + transactions.get(j));
+                    }
+                }
             }
-            System.out.println("======================================");
+
+            return true;
+        } else {
+            return false;
         }
     }
-
-    public void listBranches() {
-        this.listBranches(false);
-    }
-
 }
