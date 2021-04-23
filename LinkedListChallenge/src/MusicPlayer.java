@@ -144,7 +144,7 @@ public class MusicPlayer {
                     iter.previous();
                     song = iter.next();
                 }
-                System.out.println("Playing now: " + song);
+                System.out.println("Replaying now: " + song);
                 break;
             case 4:
                 quit = true;
