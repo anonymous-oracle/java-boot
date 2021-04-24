@@ -6,5 +6,10 @@ public class App {
         phone.powerOn();
         phone.callPhone(12346);
 
+
+        phone = new MobilePhone(259461659);
+        phone.powerOn();
+        phone.callPhone(259461659);
+        phone.answer();
     }
 }
