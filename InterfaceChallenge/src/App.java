@@ -3,8 +3,18 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
-        ArrayList<String> values = new ArrayList<String>();
+        Player player = new Player("Player", 10, 15);
+        System.out.println(player.toString());
+        saveObject(player);
+        player.setHitPoints(8);
+        System.out.println(player);
+        player.setWeapon("Stormbringer");
+        saveObject(player);
+        loadObject(player);
+        System.out.println(player);
     }
+
+
 
     public static ArrayList<String> readValues() {
         ArrayList<String> values = new ArrayList<String>();
@@ -29,5 +39,16 @@ public class App {
             }
         }
         return values;
+    }
+
+    public static void saveObject(ISaveable objectToSave) {
+        for (int i = 0; i < objectToSave.write().size(); i++) {
+            System.out.println("Saving " + objectToSave.write().get(i) + " to storage device");
+        }
+    }
+
+    public static void loadObject(ISaveable objectToLoad) {
+        ArrayList<String> values = readValues();
+        objectToLoad.read(values);
     }
 }
