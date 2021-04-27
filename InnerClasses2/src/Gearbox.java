@@ -55,7 +55,7 @@ public class Gearbox {
         }
 
         public int getGearNumber() {
-            return this.ratio;
+            return this.gearNumber;
         }
 
         public double getRatio() {
