@@ -4,8 +4,9 @@ public class App {
         dog.breathe();
         dog.eat();
 
-        Bird birdRavi = new Bird("Bird Ravi");
+        Bird birdRavi = new Pigeon("Bird Ravi"); // notice that the abstract class can be used as a type identifier for an extended class
         birdRavi.breathe();
         birdRavi.eat();
+        birdRavi.fly(); 
     }
 }
