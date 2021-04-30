@@ -1,39 +1,37 @@
 public class Item extends ListItem {
     public Item(Object value) {
         super(value);
-        this.nextLink = null;
-        this.previousLink = null;
     }
 
     @Override
-    public Object getValue() {
+    protected Object getValue() {
         return this.value;
     }
 
     @Override
-    public ListItem getPreviousLink() {
+    protected ListItem getPreviousLink() {
         return this.previousLink;
     }
 
     @Override
-    public ListItem getNextLink() {
+    protected ListItem getNextLink() {
         return this.nextLink;
     }
 
     @Override
-    public void setPreviousLink(ListItem item) {
+    protected void setPreviousLink(ListItem item) {
         this.previousLink = item;
     }
 
     @Override
-    public void setNextLink(ListItem item) {
+    protected void setNextLink(ListItem item) {
         this.nextLink = item;
 
     }
 
     @Override
-    public int compareTo(ListItem item) {
-        return ((String) this.value).compareTo((String) item.getValue());
+    protected int compareTo(ListItem item) {
+        return (this.value.toString()).compareTo(item.getValue().toString());
     }
 
     // @Override

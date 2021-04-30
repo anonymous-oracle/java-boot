@@ -5,6 +5,8 @@ public abstract class ListItem {
 
     public ListItem(Object value){
         this.value = value;
+        this.nextLink = null;
+        this.previousLink = null;
     }
 
     protected abstract Object getValue();

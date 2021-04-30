@@ -4,7 +4,7 @@ public class App {
         Object str2 = 3;
         // Class<Object> class = str.getClass();
         // System.out.println();
-        System.out.println(str.getClass()==str2.getClass());
+        System.out.println(str.toString().getClass());
         
         
     }
