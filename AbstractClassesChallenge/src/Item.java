@@ -1,41 +1,22 @@
-public class Item extends ListItem {
+public abstract class Item {
+
+    protected Object value;
+
     public Item(Object value) {
-        super(value);
+        this.value = value;
     }
 
-    @Override
-    protected Object getValue() {
-        return this.value;
-    }
+    protected abstract Object getValue();
 
-    @Override
-    protected ListItem getPreviousLink() {
-        return this.previousLink;
-    }
+    protected abstract void setPreviousLink(Object item);
 
-    @Override
-    protected ListItem getNextLink() {
-        return this.nextLink;
-    }
+    protected abstract void setNextLink(Object item);
 
-    @Override
-    protected void setPreviousLink(ListItem item) {
-        this.previousLink = item;
-    }
+    protected abstract Object getNextLink();
 
-    @Override
-    protected void setNextLink(ListItem item) {
-        this.nextLink = item;
+    protected abstract Object getPreviousLink();
 
-    }
+    protected abstract int compareTo(Item item);
+    // public abstract String toString();
 
-    @Override
-    protected int compareTo(ListItem item) {
-        return (this.value.toString()).compareTo(item.getValue().toString());
-    }
-
-    // @Override
-    public String toString() {
-        return (String) this.value;
-    }
 }
