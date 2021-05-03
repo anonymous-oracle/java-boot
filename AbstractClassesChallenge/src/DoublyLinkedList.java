@@ -29,8 +29,6 @@ public class DoublyLinkedList {
         if (this.head == null && this.tail == null) {
             this.head = item;
             this.tail = item;
-            item.setPreviousLink(this.head);
-            item.setNextLink(this.tail);
             return true;
         }
         return false;
@@ -42,18 +40,20 @@ public class DoublyLinkedList {
             return true;
         }
         int comparison;
-        ListItem temp = (ListItem) this.head;
+        this.push(item);
+        ListItem temp = (ListItem) ((ListItem) this.tail).getPreviousLink();
         while (temp != null) {
             comparison = temp.compareTo(item);
             if (comparison > 0) {
+                this.tail = temp;
                 item.setNextLink(temp);
                 item.setPreviousLink(temp.getPreviousLink());
                 temp.setPreviousLink(item);
+                temp.setNextLink(null);
+            } else {
                 return true;
-            } else if (comparison == 0) {
-                return false;
             }
-            temp = (ListItem) temp.getNextLink();
+            temp = (ListItem) ((ListItem) this.tail).getPreviousLink();
         }
         return false;
     }
@@ -75,7 +75,8 @@ public class DoublyLinkedList {
         if (this.firstPush(item)) {
             return true;
         }
-        item.setPreviousLink(((ListItem) this.tail).getPreviousLink());
+        item.setPreviousLink((ListItem) this.tail);
+        ((ListItem) this.tail).setNextLink(item);
         this.tail = item;
         return true;
     }
@@ -113,11 +114,16 @@ public class DoublyLinkedList {
 
     public String toString() {
         String stringRep = "";
+        if(this.head==null){
+            return "";
+        }
         Item temp = (Item) this.head;
-        while (temp != null) {
+        
+        while (temp.getNextLink() != null) {
             stringRep += temp.toString() + ", ";
             temp = (Item) temp.getNextLink();
         }
+        stringRep += temp.toString();
         return stringRep;
     }
 }

@@ -40,6 +40,6 @@ public class ListItem extends Item {
 
     // @Override
     public String toString() {
-        return (String) this.value;
+        return this.value.toString();
     }
 }
