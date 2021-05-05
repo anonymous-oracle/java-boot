@@ -2,6 +2,8 @@ import java.util.ArrayList;
 
 // public class Team<T> {
 public class Team<T extends Player> { // this restricts the class to only the player types
+    // public class Team<T extends Player & Teacher & Keeper > implements Comparable<Team<T>> { // use this syntax
+    // to first extend the desired class followed by a sequence of interfaces
     private String name;
     int played = 0;
     int won = 0;
@@ -24,12 +26,12 @@ public class Team<T extends Player> { // this restricts the class to only the pl
             return false;
         } else {
             members.add(player);
-            System.out.println( player.getName() + " picked for team " + this.name);
+            System.out.println(player.getName() + " picked for team " + this.name);
             return true;
         }
     }
 
-    public void matchResult(Team opponent, int ourScore, int theirScore) {
+    public void matchResult(Team<T> opponent, int ourScore, int theirScore) {
         if (ourScore > theirScore) {
             this.won++;
         } else if (ourScore == theirScore) {
