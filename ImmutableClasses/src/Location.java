@@ -1,21 +1,32 @@
+
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Created by dev on 8/12/2015.
+ */
 public class Location {
     private final int locationID;
     private final String description;
     private final Map<String, Integer> exits;
 
-    public Location(int locationID, String description, Map<String, Integer> exits) { // can provide access to users to
-                                                                                      // use their own exits
+    public Location(int locationID, String description, Map<String, Integer> exits) {
         this.locationID = locationID;
         this.description = description;
-        this.exits = exits;
+        if (exits != null) {
+            this.exits = new HashMap<String, Integer>(exits);
+        } else {
+            this.exits = new HashMap<String, Integer>();
+        }
         this.exits.put("Q", 0);
     }
 
+    public Location(int locationID, String description) {
+        this(locationID, description, null);
+    }
+
     // public void addExit(String direction, int location) {
-    //     exits.put(direction, location);
+    // exits.put(direction, location);
     // }
 
     public int getLocationID() {
@@ -26,7 +37,8 @@ public class Location {
         return description;
     }
 
-    public Map<String, Integer> getExits() {
-        return new HashMap<String, Integer>(this.exits);
+    public Map<String, Integer> getExits() { // immutable classes should use logic such that the referenced data stored
+                                             // within the class should not be modified
+        return new HashMap<String, Integer>(exits);
     }
 }
