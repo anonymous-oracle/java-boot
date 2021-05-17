@@ -1,7 +1,9 @@
+import java.util.Map;
+
 public class App {
     private static StockList stockList = new StockList();
 
-    public static void main(String[] args) {
+    public static void main(String[] args, Double value) {
         StockItem temp = new StockItem("bread", 0.86, 100);
         stockList.addStock(temp);
 
@@ -41,16 +43,40 @@ public class App {
 
         Basket timsBasket = new Basket("Tim");
         sellItem(timsBasket, "car", 1);
+        System.out.println(timsBasket);
+
+        sellItem(timsBasket, "car", 1);
+        System.out.println(timsBasket);
+
+        if (sellItem(timsBasket, "car", 1) != 1) {
+            System.out.println("There are no cars");
+        }
+        sellItem(timsBasket, "spanner", 5);
+        System.out.println(timsBasket);
+
+        sellItem(timsBasket, "bread", 1);
+        sellItem(timsBasket, "juice", 4);
+        sellItem(timsBasket, "cup", 12);
+        System.out.println(timsBasket);
+
+        System.out.println(stockList);
+
+        temp = new StockItem("pen", 1.12);
+        stockList.getItems().put(temp.getName(), temp);
+
+        for (Map.Entry<String, Double> item : stockList.priceList().entrySet()) {
+            System.out.println(item.getKey() + " costs " + item.getValue());
+        }
     }
 
     public static int sellItem(Basket basket, String item, int quantity) {
         // retrieve the item stock list
         StockItem stockItem = stockList.getStockItem(item);
-        if(stockItem==null){
-            System.out.println("We don't sell "+ item);
+        if (stockItem == null) {
+            System.out.println("We don't sell " + item);
             return 0;
         }
-        if(stockList.sellStock(item, quantity)!=0){
+        if (stockList.sellStock(item, quantity) != 0) {
             basket.addToBasket(stockItem, quantity);
             return quantity;
         }
