@@ -1,0 +1,16 @@
+<!--FlowPane adjusts the orientation according to the resizing of the window-->
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.FlowPane?>
+<FlowPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="sample.Controller" orientation="VERTICAL">
+    <!--          fx:controller="sample.Controller" orientation="HORIZONTAL">-->
+    <Button text="Button One"/>
+    <Button text="Button Two"/>
+    <Button text="Button Three"/>
+    <Button text="Button Four"/>
+    <Button text="Button Five"/>
+    <Button text="Button Six"/>
+    <Button text="Button Seven"/>
+    <Button text="Button Eight"/>
+    <Button text="Button Nine"/>
+</FlowPane>

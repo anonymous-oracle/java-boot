@@ -1,0 +1,36 @@
+<!--        xmlns:fx="http://javafx.com/fxml"-->
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="sample.Controller">
+    <top>
+        <!--        even though the alignment is at the center, since the label is in the top element,-->
+        <!--        no change in the alignment will be seen-->
+        <!--        however with the borderpane.alignment property we can override the 'top' element's priority to set the element at the center-->
+        <Label text="This label is at the top" BorderPane.alignment="CENTER" alignment="CENTER"
+               style="-fx-border-color: blue; -fx-border-style: dashed; -fx-border-width: 3"/>
+    </top>
+    <left>
+        <Label text="this is in the left position" alignment="CENTER"/>
+    </left>
+    <center>
+        <Label text="this text is at the center and has a really loooooooooooooooooooooooooooooooooong text"/>
+    </center>
+    <right>
+        <Label text="this is in the right position" alignment="CENTER"/>
+    </right>
+    <bottom>
+        <!-- PUTTING HBOX IN THE BOTTOM ELEMENT SHIFTS THE BUTTONS TO THE BOTTOM INSTEAD OF TOP POSITION -->
+        <!-- even though the alignment of the HBox is mentioned as "TOP_RIGHT", it will still be placed at the bottom-->
+        <!-- because the HBox is in the bottom positioning element-->
+        <HBox spacing="10" alignment="TOP_RIGHT">
+            <padding>
+                <Insets bottom="10" right="10"/>
+            </padding>
+            <Button text="Okay" prefWidth="90"/>
+            <Button text="Cancel" prefWidth="90"/>
+            <Button text="Help" prefWidth="90"/>
+        </HBox>
+    </bottom>
+</BorderPane>

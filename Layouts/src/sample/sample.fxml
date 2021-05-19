@@ -1,0 +1,26 @@
+
+<!-- TWEAK THE PARAMETERS TO LEARN HOW THEY AFFECT THE LAYOUT -->
+
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="sample.Controller" alignment="TOP_CENTER" hgap="10" vgap="10" gridLinesVisible="true">
+    <padding>
+        <!--        used to provide some padding from the top to the visible gridlines-->
+        <Insets top="10"/>
+    </padding>
+    <!--    <columnConstraints>-->
+    <!--        &lt;!&ndash;        for the first column&ndash;&gt;-->
+    <!--        <ColumnConstraints percentWidth="50"/>-->
+    <!--        &lt;!&ndash;        for the second column&ndash;&gt;-->
+    <!--        <ColumnConstraints percentWidth="50"/>-->
+    <!--    </columnConstraints>-->
+    <Button text="button one" GridPane.rowIndex="0" GridPane.columnIndex="0" GridPane.halignment="RIGHT"/>
+    <Button text="button two" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Button text="button three" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+    <!--    run the code by changing the GridPane.columnIndex="1" and GridPane.columnIndex="0" -->
+    <Button text="really long button four more text more text more text more text more text more text"
+            GridPane.rowIndex="3" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+    <Button text="button five" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+</GridPane>
+
