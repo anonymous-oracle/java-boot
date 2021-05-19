@@ -1,8 +1,8 @@
-<!--VBox does not adjust the orientation according to the resizing of the window-->
+<!--TilePane adjusts the orientation according to the resizing of the window and also places a gap-->
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.VBox?>
-<VBox xmlns:fx="http://javafx.com/fxml"
-      fx:controller="sample.Controller">
+<?import javafx.scene.layout.TilePane?>
+<TilePane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="sample.Controller">
     <Button text="Button One"/>
     <Button text="Button Two"/>
     <Button text="Button Three"/>
@@ -12,4 +12,4 @@
     <Button text="Button Seven"/>
     <Button text="Button Eight"/>
     <Button text="Button Nine"/>
-</VBox>
+</TilePane>
