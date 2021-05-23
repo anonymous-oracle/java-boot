@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<!--<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" gridLinesVisible="true" hgap="10" prefHeight="140.0"-->
 <?import javafx.collections.FXCollections?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.Image?>
@@ -7,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.Font?>
 <?import java.lang.*?>
-<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" gridLinesVisible="true" hgap="10" prefHeight="140.0"
+<GridPane xmlns:fx="http://javafx.com/fxml/1" alignment="center" hgap="10" prefHeight="140.0"
           prefWidth="974.0"
           vgap="10" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="sample.Controller">
     <Button text="Click me" GridPane.columnIndex="0" GridPane.rowIndex="0">
@@ -85,20 +86,39 @@
             <String fx:value="Choice Box 1"/>
         </value>
     </ChoiceBox>
-    <fx:define>
-        <ToggleGroup fx:id="toggleGroupColor"/>
-    </fx:define>
-    <!--    <columnConstraints>-->
-    <!--        <ColumnConstraints maxWidth="284.0" minWidth="182.0" prefWidth="209.0"/>-->
-    <!--        <ColumnConstraints maxWidth="382.0" minWidth="218.0" prefWidth="218.0"/>-->
-    <!--        <ColumnConstraints maxWidth="308.0" minWidth="180.0" prefWidth="212.0"/>-->
-    <!--        <ColumnConstraints maxWidth="243.0" minWidth="153.0" prefWidth="196.0"/>-->
-    <!--        <ColumnConstraints maxWidth="110.0" minWidth="56.0" prefWidth="97.0"/>-->
-    <!--    </columnConstraints>-->
-    <!--    <rowConstraints>-->
-    <!--        <RowConstraints/>-->
-    <!--        <RowConstraints/>-->
-    <!--        <RowConstraints/>-->
-    <!--        <RowConstraints/>-->
-    <!--    </rowConstraints>-->
+    <!--    GridPane.columnSpan helps to span the components over the entire column span of the grid-->
+    <Slider GridPane.rowIndex="4" GridPane.columnIndex="0" max="100" min="0" GridPane.columnSpan="4"
+            showTickLabels="true" showTickMarks="true" minorTickCount="5" snapToTicks="true"/>
+    <Spinner GridPane.columnIndex="4" GridPane.rowIndex="4" min="0" max="100" editable="true"/>
+    <ColorPicker GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+    <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+    <TitledPane text="Titled Pane" GridPane.columnIndex="2" GridPane.rowIndex="5">
+        <Label>
+            <String fx:value="Label in titled pane"/>
+        </Label>
+    </TitledPane>
+    <Accordion GridPane.columnIndex="0" GridPane.rowIndex="6" expandedPane="$tp3">
+        <panes>
+            <TitledPane text="Titled Pane" GridPane.columnIndex="2" GridPane.rowIndex="5" fx:id="tp3">
+                <Label>
+                    <String fx:value="Label in titled pane 1"/>
+                </Label>
+            </TitledPane>
+            <TitledPane text="Titled Pane" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <Label>
+                    <String fx:value="Label in titled pane 2"/>
+                </Label>
+            </TitledPane>
+            <TitledPane text="Titled Pane" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <Label>
+                    <String fx:value="Label in titled pane 3"/>
+                </Label>
+            </TitledPane>
+            <TitledPane text="Titled Pane" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                <Label>
+                    <String fx:value="Label in titled pane 4"/>
+                </Label>
+            </TitledPane>
+        </panes>
+    </Accordion>
 </GridPane>

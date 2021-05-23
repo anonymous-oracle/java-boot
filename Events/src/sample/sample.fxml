@@ -1,0 +1,9 @@
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.*?>
+<GridPane xmlns:fx="http://javafx.com/fxml"
+          fx:controller="sample.Controller" alignment="center" hgap="10" vgap="10">
+    <!-- for the user to enter the name -->
+    <TextField fx:id="nameField" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+    <Button text="Say Hello" GridPane.rowIndex="1" GridPane.columnIndex="0" onAction="#onButtonClick"/>
+</GridPane>
