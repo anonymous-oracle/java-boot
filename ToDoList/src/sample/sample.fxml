@@ -1,0 +1,35 @@
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.Controller">
+    <left>
+<!--        <ListView fx:id="todoListView" onMouseClicked="#handleClickListView">-->
+        <ListView fx:id="todoListView">
+        </ListView>
+    </left>
+    <center>
+        <VBox>
+            <!-- uses all the remaining available space after the left column-->
+            <!-- since textARea is a child of Vbox,  VBox.grow="ALWAYS" will always make sure that the textarea occupies maximum space available always compared to other VBox children -->
+            <TextArea fx:id="itemDetails" VBox.vgrow="ALWAYS"/>
+            <HBox>
+                <Label text="Due: " style="-fx-background-color: white">
+                    <font>
+                        <Font name="times new roman" size="20"/>
+                    </font>
+                </Label>
+                <Label fx:id="deadLineLabel" style="-fx-background-color: white">
+                    <font>
+                        <Font name="times new roman bold" size="20"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+
+    </center>
+</BorderPane>
