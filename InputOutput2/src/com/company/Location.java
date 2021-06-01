@@ -1,6 +1,7 @@
 package com.company;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -11,7 +12,7 @@ public class Location {
     private final String description;
     private final Map<String, Integer> exits;
 
-    public Location(int locationID, String description, Map<String, Integer> exits) {
+    public Location(int locationID, String description, LinkedHashMap<String, Integer> exits) {
         this.locationID = locationID;
         this.description = description;
         this.exits = exits;
@@ -19,7 +20,7 @@ public class Location {
     }
 
     public Location(int locationID, String description) {
-        this(locationID, description, new HashMap<>());
+        this(locationID, description, new LinkedHashMap<>());
     }
 
     public void addExit(String direction, int location) {

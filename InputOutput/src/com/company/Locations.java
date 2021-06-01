@@ -1,21 +1,36 @@
 package com.company;
 
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class Locations implements Map<Integer, Location> {
     private static final Map<Integer, Location> locations = new HashMap<Integer, Location>();
-    private static final String locationFilePath = "locations.txt";
-    private static final String directionFilePath = "directions.txt";
+    private static final String locationFilePath = "locations_big.txt";
+    private static final String directionFilePath = "directions_big.txt";
 
     ////    COMMENT THIS OUT WHEN WE ARE HAVING THE LOCATION DATA STORED ON DISK
     static { // the same data is used across all instance of the class instead of separate copies
-        Scanner scanner = null;
-        try {
-            scanner = new Scanner(new FileReader(locationFilePath));
+//        Scanner scanner = null;
+//        try {
+//            scanner = new Scanner(new FileReader(locationFilePath));
+//            scanner.useDelimiter(",");
+//            while (scanner.hasNextLine()) {
+//                int loc = scanner.nextInt();
+//                scanner.skip(scanner.delimiter()); // skips over the delimiter
+//                String description = scanner.nextLine();
+//                System.out.println("Imported loc: " + loc + " | description: " + description);
+//                Map<String, Integer> tempExit = new HashMap<>();
+//                locations.put(loc, new Location(loc, description, tempExit));
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (scanner != null) {
+//                scanner.close(); // scanner also closes the file reader streams that it was using
+//            }
+//        }
+        try (Scanner scanner = new Scanner(new FileReader(locationFilePath))) {
             scanner.useDelimiter(",");
             while (scanner.hasNextLine()) {
                 int loc = scanner.nextInt();
@@ -26,11 +41,56 @@ public class Locations implements Map<Integer, Location> {
                 locations.put(loc, new Location(loc, description, tempExit));
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            if (scanner != null) {
-                scanner.close(); // scanner also closes the file reader streams that it was using
+
+        }
+
+//        NOW READ THE EXITS
+//        try {
+////            buffered reader reads the data from the stream and stores it into a character array as if in queue
+//            scanner = new Scanner(new BufferedReader(new FileReader(directionFilePath)));
+//            scanner.useDelimiter(",");
+//            while (scanner.hasNextLine()) {
+////                int loc = scanner.nextInt();
+////                scanner.skip(scanner.delimiter());
+////                String direction = scanner.next();
+////                scanner.skip(scanner.delimiter());
+////                String dest = scanner.nextLine();
+//                String input = scanner.nextLine();
+//                String[] data = input.split(",");
+//                int loc = Integer.parseInt(data[0]);
+//                String direction = data[1];
+//                int destination = Integer.parseInt(data[2]);
+//                System.out.println("Imported loc: " + loc + " | direction: " + direction + " | destination: " + destination);
+//                Location location = locations.get(loc);
+//                location.addExit(direction, destination);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } finally {
+//            if (scanner != null) {
+//                scanner.close();
+//            }
+//        }
+        try (Scanner scanner  = new Scanner(new FileReader(directionFilePath))) {
+//            buffered reader reads the data from the stream and stores it into a character array as if in queue
+            scanner.useDelimiter(",");
+            while (scanner.hasNextLine()) {
+//                int loc = scanner.nextInt();
+//                scanner.skip(scanner.delimiter());
+//                String direction = scanner.next();
+//                scanner.skip(scanner.delimiter());
+//                String dest = scanner.nextLine();
+                String input = scanner.nextLine();
+                String[] data = input.split(",");
+                int loc = Integer.parseInt(data[0]);
+                String direction = data[1];
+                int destination = Integer.parseInt(data[2]);
+                System.out.println("Imported loc: " + loc + " | direction: " + direction + " | destination: " + destination);
+                Location location = locations.get(loc);
+                location.addExit(direction, destination);
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
 
         //        locations.put(0, new Location(0, "You are sitting in front of a computer learning Java"));
