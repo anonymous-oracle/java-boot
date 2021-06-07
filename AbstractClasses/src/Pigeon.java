@@ -1,4 +1,4 @@
-public class Pigeon extends Bird {
+public class Pigeon extends Bird implements ICanFly{
     public Pigeon(String name) {
         super(name);
     }
