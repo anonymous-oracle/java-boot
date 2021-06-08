@@ -1,0 +1,44 @@
+package com.company;
+
+import java.io.Serializable;
+
+public class Monitor implements Serializable {
+    private String model;
+    private String manufacturer;
+    private int size;
+    private Resolution nativeResolution;
+    private int serialVersionUID;
+
+    public Monitor(String model, String manufacturer, int size, Resolution nativeResolution) {
+        this.model = model;
+        this.manufacturer = manufacturer;
+        this.size = size;
+        this.nativeResolution = nativeResolution;
+        this.serialVersionUID = this.hashCode();
+    }
+
+    public void drawPixelAt(int x, int y, String color) {
+        System.out.println("Drawing pixel at " + x + "," + y + " in color " + color);
+    }
+
+    public String getModel() {
+        return this.model;
+    }
+
+    public String getManufacturer() {
+        return this.manufacturer;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public Resolution getNativeResolution() {
+        return this.nativeResolution;
+    }
+
+    @Override
+    public int hashCode() {
+        return (this.getModel() + this.getManufacturer()).hashCode() + this.nativeResolution.hashCode();
+    }
+}
