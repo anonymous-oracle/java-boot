@@ -31,7 +31,7 @@ public class Main {
             temp[i] = src[i];
         }
         for (int i = src.length; i < src.length + dst.length; i++) {
-            temp[i] = src[i - src.length];
+            temp[i] = dst[i - src.length];
         }
         return temp;
     }
