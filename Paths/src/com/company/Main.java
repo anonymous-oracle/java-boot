@@ -3,6 +3,7 @@ package com.company;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
 
 public class Main {
 
@@ -27,9 +28,30 @@ public class Main {
         Path fileDestination = FileSystems.getDefault().getPath(".", "workingdirectory.txt").toAbsolutePath().normalize(); // destination should also contain the
         Files.move(fileToMove, fileDestination, StandardCopyOption.REPLACE_EXISTING);
         Files.copy(fileDestination, fileToMove);
-
+        Path fileToCreate = FileSystems.getDefault().getPath("createdfile.txt").toAbsolutePath().normalize();
         Files.delete(fileDestination);
         Files.list(fileDestination.getParent());
+        try {
+            Files.createFile(fileToCreate);
+        } catch (FileAlreadyExistsException e) {
+
+        }
+        Path dirToCreate = FileSystems.getDefault().getPath("createddir");
+        try {
+            Files.createDirectory(dirToCreate);
+        } catch (FileAlreadyExistsException e) {
+
+        }
+        Files.delete(dirToCreate);
+        dirToCreate = FileSystems.getDefault().getPath("dir1/dir2/dir3/dir4/dir5/dir6");
+        Files.createDirectories(dirToCreate);
+        System.out.println("Size of directory: " + Files.size(dirToCreate));
+        System.out.println("Directory last modified: " + Files.getLastModifiedTime(dirToCreate));
+
+        BasicFileAttributes attrs = Files.readAttributes(dirToCreate, BasicFileAttributes.class);
+        System.out.println("Size of directory: " + attrs.size());
+        System.out.println("Directory last modified: " + attrs.lastModifiedTime());
+
     }
 
     private static void printFile(Path path) throws IOException {
