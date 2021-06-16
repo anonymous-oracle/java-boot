@@ -9,7 +9,7 @@ import java.util.Iterator;
 public class Main {
 
     public static void main(String[] args) throws IOException {
-        Path mainDir = FileSystems.getDefault().getPath("dir1").toAbsolutePath();
+        Path mainDir = FileSystems.getDefault().getPath("dir1");
         Path dirs = FileSystems.getDefault().getPath("dir1", "dir2", "dir3", "dir4", "dir5", "dir6", "dir7").normalize().toAbsolutePath();
         try {
             Files.createDirectories(dirs);
@@ -23,12 +23,12 @@ public class Main {
 //            }
 //        };
 
-        DirectoryStream.Filter<Path> filter = p -> Files.isRegularFile(p);
-//        DirectoryStream<Path> contents = Files.newDirectoryStream(dirs, "*txt");
-        DirectoryStream<Path> contents = Files.newDirectoryStream(dirs, filter);
-        for (Path file : contents) {
-            System.out.println(file.getFileName());
-        }
+//        DirectoryStream.Filter<Path> filter = p -> Files.isRegularFile(p);
+////        DirectoryStream<Path> contents = Files.newDirectoryStream(dirs, "*txt");
+//        DirectoryStream<Path> contents = Files.newDirectoryStream(dirs, filter);
+//        for (Path file : contents) {
+//            System.out.println(file.getFileName());
+//        }
 
         //        String separator = File.separator; // separator for the file paths in different operating systems
 //        System.out.println(separator);
@@ -52,10 +52,21 @@ public class Main {
 //            System.out.println(roots.next());
 //        }
 
-//    WALK DIRECTORY TREE
-// PRINTING NAMES AS THE WALK RUNS
+////    WALK DIRECTORY TREE
+//// PRINTING NAMES AS THE WALK RUNS
+//        try {
+//            Files.walkFileTree(mainDir, new PrintNames());
+//        } catch (Exception e) {
+//            System.out.println(e.getMessage());
+//        }
+
+
+//    COPYING A DIRECTORY RECURSIVELY
+        Path copyPath = FileSystems.getDefault().getPath(mainDir.toString(),  "copyDir1");
+        System.out.println("Copy destination is: " + copyPath);
         try {
-            Files.walkFileTree(mainDir, new PrintNames());
+            Files.walkFileTree(mainDir, new CopyFiles(mainDir, copyPath));
+            System.out.println("Successfully copied dir1 to copyDir1");
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
