@@ -8,11 +8,12 @@ public class AnotherThread extends Thread {
         System.out.println(ANSI_BLUE + "Hello from " + currentThread().getName());
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
-            System.out.println(ANSI_BLUE + "Another thread woke " + currentThread().getName() + " up");
+            System.out.println(ANSI_BLUE + "Another thread woke " + currentThread().getName() + " up from sleep");
+            return; // terminates the run method when interrupted
         }
-        System.out.println(ANSI_BLUE + "Three seconds passed and " + currentThread().getName() + " is awake");
+        System.out.println(ANSI_BLUE + "Five seconds passed and " + currentThread().getName() + " is awake");
 
     }
 }
