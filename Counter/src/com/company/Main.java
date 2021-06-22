@@ -47,10 +47,10 @@ class Countdown {
 
 //        another way to synchronize is to use an intrinsic block where the variable to be locked is passed to the block; however, primitive datatypes can't be passed to the lock
 //        synchronized (color) {
-        synchronized (this) { // by synchronizing the countdown object itself, we produce the same effect as using a synchronized function where the first thread will have access to the object until it finishes
 //            there will still be some interference in the synchronized block because the color object is a local variable and since the method is called separately in two threads
 //            there will be separate variables created in the thread stack
-            for (i = 10; i > 0; i--) { // if int i is not declared then the instance variable 'i' will be used and both threads will have access to the same instance variable
+        synchronized (this) { // by synchronizing the countdown object itself, we produce the same effect as using a synchronized function where the first thread will have access to the object until it finishes
+            for (i = 100; i > 0; i--) { // if int i is not declared then the instance variable 'i' will be used and both threads will have access to the same instance variable
                 System.out.println(color + Thread.currentThread().getName() + ": i = " + i);
             }
         }
