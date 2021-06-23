@@ -1,16 +1,13 @@
-package com.company;
+package com.timbuchalka;
 
-import java.util.Collections;
 import java.util.Random;
 
-//DEMONSTRATING CONSUMER AND PRODUCER METHODS
 public class Main {
 
     public static void main(String[] args) {
         Message message = new Message();
         (new Thread(new Writer(message))).start();
         (new Thread(new Reader(message))).start();
-
     }
 }
 
@@ -19,32 +16,31 @@ class Message {
     private boolean empty = true;
 
     public synchronized String read() {
-        while (this.empty) {
-// empty while loop where the thread will wait for the lock
+        while(empty) {
             try {
-//                without the wait call, the lock on the message object or rather the empty variable will not be released as in synchronized methods, thread executions are synchronized to execute one at a time
-                wait(); // suspends the control on the empty object by the current thread and allows other awakened thread(s) waiting for control of the object to acquire the lock
-            } catch (InterruptedException e) {
+                wait();
+            } catch(InterruptedException e) {
 
             }
+
         }
-        this.empty = true;
-        notifyAll(); // call notifyAll() after the empty variable is changed
-        return this.message;
+        empty = true;
+        notifyAll();
+        return message;
     }
 
     public synchronized void write(String message) {
-        while (!this.empty) {
+        while(!empty) {
             try {
                 wait();
-            } catch (InterruptedException e) {
+            } catch(InterruptedException e) {
 
             }
-        }
-        this.empty = false;
-        this.message = message;
-        notifyAll(); // call notifyAll() after the message field is set
 
+        }
+        empty = false;
+        this.message = message;
+        notifyAll();
     }
 }
 
@@ -62,17 +58,18 @@ class Writer implements Runnable {
                 "All the king's horses and all the king's men",
                 "Couldn't put Humpty together again"
         };
+
         Random random = new Random();
-        for (String s : messages) {
-            message.write(s);
+
+        for(int i=0; i<messages.length; i++) {
+            message.write(messages[i]);
             try {
                 Thread.sleep(random.nextInt(2000));
-            } catch (InterruptedException e) {
+            } catch(InterruptedException e) {
 
             }
         }
         message.write("Finished");
-
     }
 }
 
@@ -85,13 +82,29 @@ class Reader implements Runnable {
 
     public void run() {
         Random random = new Random();
-        for (String latestMessage = this.message.read(); !latestMessage.equals("Finished"); latestMessage = this.message.read()) {
+        for(String latestMessage = message.read(); !latestMessage.equals("Finished");
+            latestMessage = message.read()) {
             System.out.println(latestMessage);
             try {
                 Thread.sleep(random.nextInt(2000));
-            } catch (InterruptedException e) {
+            } catch(InterruptedException e) {
 
             }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
