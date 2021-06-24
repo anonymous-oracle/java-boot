@@ -16,7 +16,6 @@ public class Main {
         new Thread(producer).start();
         new Thread(consumer1).start();
         new Thread(consumer2).start();
-
     }
 }
 
@@ -35,14 +34,18 @@ class MyProducer implements Runnable {
         for (String num : nums) {
             try {
                 System.out.println(this.color + "Adding..." + num);
-                this.buffer.add(num);
+                synchronized (buffer) {
+                    this.buffer.add(num);
+                }
                 Thread.sleep(random.nextInt(2000));
             } catch (InterruptedException e) {
                 System.out.println("Producer was interrupted");
             }
         }
         System.out.println(this.color + "Adding EOF and exiting...");
-        this.buffer.add("EOF");
+        synchronized (buffer) {
+            this.buffer.add("EOF");
+        }
     }
 }
 
@@ -57,14 +60,16 @@ class MyConsumer implements Runnable {
 
     public void run() {
         while (true) {
-            if (this.buffer.isEmpty()) {
-                continue;
-            }
-            if (this.buffer.get(0).equals("EOF")) {
-                System.out.println(this.color + "Exiting");
-                break;
-            } else {
-                System.out.println(color + "Removed " + this.buffer.remove(0));
+            synchronized (buffer) {
+                if (this.buffer.isEmpty()) {
+                    continue;
+                }
+                if (this.buffer.get(0).equals("EOF")) {
+                    System.out.println(this.color + "Exiting");
+                    break;
+                } else {
+                    System.out.println(color + "Removed " + this.buffer.remove(0));
+                }
             }
         }
     }
