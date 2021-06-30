@@ -18,7 +18,7 @@ class Message {
     private String message;
     private boolean empty = true;
 
-    public synchronized String read() {
+    public synchronized String read() { // variables local to a method are thread safe because a method called by a thread and the method's local variables are stored on the thread stack
         while (this.empty) {
 // empty while loop where the thread will wait for the lock
             try {
