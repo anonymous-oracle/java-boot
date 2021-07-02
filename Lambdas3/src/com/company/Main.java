@@ -29,15 +29,19 @@ public class Main {
             return emp1.getName().compareTo(emp2.getName());
         });
 
-        employees.forEach(employee -> {
+        employees.forEach(employee -> { // HERE THE employee VARIABLE CHANGES IN EACH ITERATION, BUT THE LAMBDA IS ALSO CONSTRUCTED IN EACH ITERATION ACCORDING TO THE employee VARIABLE
             System.out.println(employee.getName());
+            new Thread(() -> System.out.println(employee.getAge())).start();
         });
 
+//        LET'S DEMONSTRATE THE SAME WITH THE OLD FOR LOOP
+        for (int i = 0; i < employees.size(); i++) {
+            System.out.println(employees.get(i).getName());
+            int finalI = i; // this declaration is needed because for the entire loop block, the value of 'i' changes
+            new Thread(() -> System.out.println(employees.get(finalI).getAge())).start();
 
-        AnotherClass anotherClass = new AnotherClass();
-        String s = anotherClass.doSomething();
-        System.out.println(s);
-        anotherClass.printValue();
+        }
+
     }
 
     public final static String doStringStuff(UpperConcat uc, String s1, String s2) {
