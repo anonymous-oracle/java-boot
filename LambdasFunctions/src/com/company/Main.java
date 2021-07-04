@@ -1,11 +1,11 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.function.IntPredicate;
+import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 interface UpperConcat {
     String upperAndConcat(String s1, String s2);
@@ -16,25 +16,36 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Employee e1 = new Employee("E1", 1);
-        Employee e2 = new Employee("E2", 2);
-        Employee e3 = new Employee("E3", 3);
-        Employee e4 = new Employee("E4", 4);
-        Employee e5 = new Employee("E5", 5);
-        Employee e6 = new Employee("E6", 6);
-        Employee e7 = new Employee("E7", 7);
-        Employee e8 = new Employee("E8", 8);
-
         List<Employee> employees = new ArrayList<>();
-        employees.add(e1);
-        employees.add(e4);
-        employees.add(e3);
-        employees.add(e2);
-        employees.add(e8);
-        employees.add(e5);
-        employees.add(e7);
-        employees.add(e6);
+        for (int i = 1; i <= 100; i++) {
+            employees.add(new Employee("E" + i, i));
+        }
+        Collections.shuffle(employees);
 
+
+//        HOW A FUNCTION INTERFACE IS USED
+//        this method of implementing a function logic helps in reducing the usage of an anonymous class and helps use it as a function that returns a value
+        Function<Employee, String> getLastLetter = (Employee employee) -> {
+            return employee.getName().substring(employee.getName().length() - 1);
+        };
+
+        Function<Employee, String> getFirstLetter = (Employee employee) -> {
+            return employee.getName().substring(0, 1);
+        };
+
+//        employees.forEach(employee -> System.out.println(getLastLetter.apply(employee)));
+        int firstLetter = 0, lastLetter = 0;
+        for (Employee employee : employees) {
+            if (new Random().nextBoolean()) {
+                System.out.println("First Letter: " + getFirstLetter.apply(employee));
+                firstLetter++;
+            } else {
+                System.out.println("Second Letter: " + getLastLetter.apply(employee));
+                lastLetter++;
+            }
+        }
+        System.out.println("Number of first letters: " + firstLetter);
+        System.out.println("Number of last letters: " + lastLetter);
 
     }
 
