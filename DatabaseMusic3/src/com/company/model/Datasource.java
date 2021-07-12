@@ -77,10 +77,24 @@ public class Datasource {
     public static final String QUERY_VIEW_SONG_INFO = "SELECT " + COLUMN_ARTIST_NAME + ", " +
             COLUMN_SONG_ALBUM + ", " + COLUMN_SONG_TRACK + " FROM " + TABLE_ARTIST_SONG_VIEW +
             " WHERE " + COLUMN_SONG_TITLE + " = \"";
-    private Connection conn = null;
 
+    public static final String QUERY_VIEW_SONG_INFO_PREP = "SELECT " + COLUMN_ARTIST_NAME + ", " +
+            COLUMN_SONG_ALBUM + ", " + COLUMN_SONG_TRACK + " FROM " + TABLE_ARTIST_SONG_VIEW +
+            " WHERE " + COLUMN_SONG_TITLE + " = ?"; // placeholder style query
+
+    private Connection conn = null;
+    private PreparedStatement querySongInfoView;
+
+public static final String INSERT_ARTIST = "INSERT INTO " + TABLE_ARTISTS + '(' + COLUMN_ARTIST_NAME + ") VALUES(?)";
+
+//public static final String INSERT_ALBUMS = "INSERT INTO " + TABLE_ALBUMS
+// CONTINUE FROM SECTION 19 CHAPTER 27
     public void close() {
         try {
+            if (querySongInfoView != null) {
+                querySongInfoView.close();
+            }
+
             if (conn != null) {
                 conn.close();
             }
@@ -93,6 +107,7 @@ public class Datasource {
     public boolean open() {
         try {
             conn = DriverManager.getConnection(CONNECTION_STRING);
+            querySongInfoView = conn.prepareStatement(QUERY_VIEW_SONG_INFO_PREP);
             return true;
         } catch (SQLException e) {
             System.out.println("Could not connect to database: " + e.getMessage());
@@ -286,13 +301,12 @@ public class Datasource {
     }
 
     public List<SongArtist> querySongInfoView(String title) {
-        StringBuilder sb = new StringBuilder(QUERY_VIEW_SONG_INFO);
-        sb.append(title);
-        sb.append("\"");
-        System.out.println(sb.toString());
 
-        try (Statement statement = conn.createStatement();
-             ResultSet results = statement.executeQuery(sb.toString())) {
+
+        try {
+//            when substituting as a placeholder, the values being substituted are considered as literal values and not as SQL syntax
+            querySongInfoView.setString(1, title); // if there are more placeholder symbols (i.e., ?), then the index will be continuing from 1 to n placeholder symbols
+            ResultSet results = querySongInfoView.executeQuery();
             List<SongArtist> songArtists = new ArrayList<>();
             while (results.next()) {
                 SongArtist songArtist = new SongArtist();
@@ -300,8 +314,11 @@ public class Datasource {
                 songArtist.setAlbumName(results.getString(2));
                 songArtist.setTrack(results.getInt(3));
                 songArtists.add(songArtist);
+
             }
             return songArtists;
+
+
         } catch (SQLException throwable) {
             System.out.println("ERROR: " + throwable.getMessage());
             throwable.printStackTrace();
