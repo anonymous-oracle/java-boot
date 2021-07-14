@@ -28,7 +28,7 @@ public class EchoingServer extends Thread {
                     break;
                 }
                 try {
-                    Thread.sleep(5000);
+                    Thread.sleep(5000); // use this to demonstrate server time-out
                 } catch (InterruptedException e) {
                     System.out.println(currentThread().getName() + " INTERRUPTED");
                     e.printStackTrace();
