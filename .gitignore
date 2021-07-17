@@ -202,3 +202,4 @@ modules.xml
 
 # End of https://www.gitignore.io/api/intellij,pycharm+all,jetbrains+all
 
+/.metadata/
