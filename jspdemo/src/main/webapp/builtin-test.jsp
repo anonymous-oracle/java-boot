@@ -4,14 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>JSP Built-in Objects</title>
 </head>
 <body>
-<%!
-String makeItLowerCase(String data){
-	return data.toLowerCase();
-}
-%>
-Lower case "HELLO WORLD": <%= makeItLowerCase("HELLO WORLD") %>
+Request user agent: <%= request.getHeader("User-Agent") %>
+<br>
+Request language: <%= request.getLocale() %>
 </body>
 </html>
