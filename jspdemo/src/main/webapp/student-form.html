@@ -5,12 +5,36 @@
 <title>Student Registration Form</title>
 </head>
 <body>
-<form action="student-response.jsp">
-First Name: <input type="text" name="firstName" /> 
-<br>
-Last Name: <input type="text" name="lastName" />
-<br>
-<input type="submit" value="submit"/>
-</form>
+	<form action="student-response.jsp">
+		First Name: <input type="text" name="firstName" /> <br> Last
+		Name: <input type="text" name="lastName" /> <br>
+		<!-- THE FOLLOWING REFERS TO A DROP DOWN LIST -->
+		<select name="country">
+			<option>India</option>
+			<option>United States</option>
+			<option>Germany</option>
+			<option>France</option>
+			<option>United Kingdom</option>
+			<option>Japan</option>
+		</select> <br>
+		<!-- THE FOLLOWING DEMONSTRATES A RADIO BUTTON SELECTION -->
+		Favorite Language:
+		<br>
+		<input type="radio" name="favoriteLanguage" value="Java"> Java
+		<input type="radio" name="favoriteLanguage" value="Golang">
+		Golang <input type="radio" name="favoriteLanguage" value="Python">
+		Python <input type="radio" name="favoriteLanguage" value="C++">
+		C++ <br>
+		<!-- THE FOLLOWING DEMONSTRATES A CHECKBOX SELECTION -->
+		Known languages:
+		<br>
+		<input type="checkbox" name="knownLanguage" value="Java"> Java
+		<input type="checkbox" name="knownLanguage" value="Golang">
+		Golang <input type="checkbox" name="knownLanguage" value="Python">
+		Python <input type="checkbox" name="knownLanguage" value="C++">
+		C++ <br> <input type="submit" value="submit" />
+
+
+	</form>
 </body>
 </html>
